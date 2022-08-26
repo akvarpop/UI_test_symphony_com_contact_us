@@ -3,14 +3,31 @@ from selenium.webdriver.common.by import By
 
 class TextBoxPageLocators:
 
-    # contact Us form fields
+    # contact Us form fields ss.com
+    YOUR_FULL_NAME = (By.CSS_SELECTOR, 'input[name="your-name"]')
+    YOUR_EMAIL = (By.CSS_SELECTOR, 'input[name="your-email"]')
+    YOUR_LOCATION = (By.CSS_SELECTOR, 'input[name="your-location"]')
+    YOUR_COMPANY = (By.CSS_SELECTOR, 'input[name="your-company"]')
+    DESCRIBE_YOUR_PROJECT = (By.CSS_SELECTOR, 'input[name="your-description"]')
 
-    YOUR_LOCATION = (By.XPATH, '//*[@id="wpcf7-f10029-o1"]/form/span[1]/select')
-    NAME = (By.XPATH, '//*[@id="wpcf7-f10029-o1"]/form/span[2]/input')
-    EMAIL = (By.CSS_SELECTOR, 'input[name="your-email"]')
-    MESSAGE = (By.CSS_SELECTOR, 'input[name="your-message"]')
-    PRIVACY_POLICY = (By.XPATH, '//*[@id="wpcf7-f10029-o1"]/form/span[5]/span/span/label/span')
-    CONTACT_US = (By.XPATH, 'input[//*[@id="wpcf7-f10029-o1"]/form/span[5]]')
+    UPLOAD_FILE = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[3]/div[2]/div/label')
+
+    PRIVACY_POLICY = (By.CSS_SELECTOR, 'input[name="acceptance-box"]')
+    PRIVACY_POLICY_1 = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[4]/div[1]/span')
+
+    CONTACT_US = (By.CSS_SELECTOR, 'input[type="submit"]')
+
+
+    # contact Us form fields ss.com
+
+    # YOUR_LOCATION = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[2]/div[3]')
+    # NAME = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[2]/div[1]')
+    # EMAIL = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[2]/div[2]')
+    # COMPANY = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[2]/div[4]')
+    # DESCRIBE_YOUR_PROJECT = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[3]/div[1]')
+    # UPLOAD_FILE = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[3]/div[2]')
+    # PRIVACY_POLICY = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[4]/div[1]')
+    # CONTACT_US = (By.XPATH, '//*[@id="wpcf7-f716-o1"]/form/div[4]/div[2]')
 
     # created form
 
