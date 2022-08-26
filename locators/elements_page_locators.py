@@ -17,6 +17,7 @@ class TextBoxPageLocators:
 
     CONTACT_US = (By.CSS_SELECTOR, 'input[type="submit"]')
 
+    RESULT = (By.XPATH, '/html/body/main/div/article/div/div/h2')
 
     # contact Us form fields ss.com
 

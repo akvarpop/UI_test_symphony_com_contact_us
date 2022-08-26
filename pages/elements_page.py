@@ -17,4 +17,8 @@ class TextBoxPage(BasePage):
         # self.element_is_visible(self.locators.UPLOAD_FILE).click()
         # self.element_is_visible(self.locators.UPLOAD_FILE).send_keys('C:/automation/test.pdf')
         self.element_is_visible(self.locators.CONTACT_US).click()
-        time.sleep(1)
+        time.sleep(2)
+
+    def check_field(self):
+        result = self.element_is_visible(self.locators.RESULT).text
+        return result

@@ -1,5 +1,7 @@
 import time
 
+import pytest
+
 from pages.base_page import BasePage
 from pages.elements_page import TextBoxPage
 
@@ -14,3 +16,10 @@ class TestElements:
             text_box_page.fill_all_fields()
             time.sleep(5)
             driver.get_screenshot_as_file("CONTACT_US.png")
+            assert text_box_page.check_field() == 'Thank you for your interest!'
+            if text_box_page.check_field() == 'Thank you for your interest!':
+                print('Contact Form Send)')
+            else:
+                print('Contact Form Not Send')
+            #print(text_box_page.check_field())
+
