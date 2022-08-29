@@ -12,14 +12,12 @@ class TestElements:
         def test_text_box(self, driver):
             text_box_page = TextBoxPage(driver, 'https://symphony-solutions.com/contact-us')
             text_box_page.open()
-            time.sleep(5)
             text_box_page.fill_all_fields()
-            time.sleep(5)
             driver.get_screenshot_as_file("CONTACT_US.png")
-            assert text_box_page.check_field() == 'Thank you for your interest!'
-            if text_box_page.check_field() == 'Thank you for your interest!':
-                print('Contact Form Send)')
-            else:
-                print('Contact Form Not Send')
+            assert text_box_page.check_field() == 'Thank you for your interest!', print('Contact Form Send)')
+            # if text_box_page.check_field() == 'Thank you for your interest!':
+            #     print('Contact Form Send)')
+            # else:
+            #     print('Contact Form Not Send')
             #print(text_box_page.check_field())
 
