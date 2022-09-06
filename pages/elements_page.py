@@ -17,7 +17,19 @@ class TextBoxPage(BasePage):
         # self.element_is_visible(self.locators.UPLOAD_FILE).click()
         # self.element_is_visible(self.locators.UPLOAD_FILE).send_keys('C:/automation/test.pdf')
         self.element_is_visible(self.locators.CONTACT_US).click()
-        time.sleep(2)
+        time.sleep(5)
+
+    def fill_all_fields_large(self):
+        self.element_is_visible(self.locators.YOUR_FULL_NAME).send_keys('test'*20)
+        self.element_is_visible(self.locators.YOUR_EMAIL).send_keys('test@test.test')
+        self.element_is_visible(self.locators.YOUR_LOCATION).send_keys('test'*20)
+        self.element_is_visible(self.locators.YOUR_COMPANY).send_keys('test'*20)
+        self.element_is_visible(self.locators.DESCRIBE_YOUR_PROJECT).send_keys('test'*20)
+        self.element_is_visible(self.locators.PRIVACY_POLICY_1).click()
+        # self.element_is_visible(self.locators.UPLOAD_FILE).click()
+        # self.element_is_visible(self.locators.UPLOAD_FILE).send_keys('C:/automation/test.pdf')
+        self.element_is_visible(self.locators.CONTACT_US).click()
+        time.sleep(5)
 
     def check_field(self):
         result = self.element_is_visible(self.locators.RESULT).text
