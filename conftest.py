@@ -12,7 +12,6 @@ options.add_argument(f"user-agent={useragent.cache}")
 options.add_argument(f"user-agent={useragent.random}")
 
 
-
 @pytest.fixture(scope='function', autouse=True)
 def driver():
     driver = webdriver.Remote(
@@ -22,6 +21,7 @@ def driver():
     driver.maximize_window()
     yield driver
     driver.quit()
+
 
 """
 Код для запуска с ПК 
