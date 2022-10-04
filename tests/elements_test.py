@@ -1,31 +1,70 @@
 import time
-
 import pytest
 
+from enums.page_response import PageResponse
 from pages.base_page import BasePage
+from enums.global_enums import GlobalErrorMessage
 from pages.elements_page import TextBoxPage
+from resources.data_json_on_python import URL_CONTACT_US
 
 
 class TestElements:
     class TestTextBox:
 
-        def test_text_box(self, driver):
-            text_box_page = TextBoxPage(driver, 'https://symphony-solutions.com/contact-us')
+        def test_text_contact_form_en(self, driver):
+            """Testing the form for sending data from the user (English): contact-us"""
+            """Тестуємо форму відправлення даних від користувача (англіською): contact-us"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
             text_box_page.open()
             text_box_page.fill_all_fields()
-            driver.get_screenshot_as_file("CONTACT_US.png")
-            assert text_box_page.check_field() == 'Thank you for your interest!', print('Contact Form Send)')
+            driver.get_screenshot_as_file("CONTACT_EN.png")
+            assert text_box_page.check_field() == PageResponse.FORM_SUBMITTED_OK, GlobalErrorMessage.CONTACT_FORM_NOT_SEND
+            """Якщо буде доступ до данних які поступили на сервер то можливо реалізувати перевірку:
+            full_name, email, location, company, describe_your_project = ext_box_page.fill_all_fields()
+            full_name, email, location, company, describe_your_project = text_box_page.check_field()
+            assert full_name == треба доповнити check_field() ящо буде доступ до сервера,
+            email ==
+            .....
+            """
 
-        def test_text_box_large_fields(self, driver):
-            text_box_page = TextBoxPage(driver, 'https://symphony-solutions.com/contact-us')
+        def test_text_contact_form_ua(self, driver):
+            """Testing the form for sending data from the user (Ukraine): contact-us"""
+            """Тестуємо форму відправлення даних від користувача (Українською): contact-us"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
+            text_box_page.open()
+            text_box_page.fill_all_fields_ua()
+            driver.get_screenshot_as_file("CONTACT_UA.png")
+            assert text_box_page.check_field() == PageResponse.FORM_SUBMITTED_OK, GlobalErrorMessage.CONTACT_FORM_NOT_SEND
+
+        def test_text_contact_form_large_fields(self, driver):
+            """Тестуємо форму відправлення даних від користувача де забагото символів: contact-us"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
             text_box_page.open()
             text_box_page.fill_all_fields_large()
-            driver.get_screenshot_as_file("CONTACT_US_LARGE.png")
-            assert text_box_page.check_field() == 'Thank you for your interest!', print('Contact Form Send)')
+            driver.get_screenshot_as_file("CONTACT_LARGE.png")
+            assert text_box_page.check_field() == PageResponse.FORM_SUBMITTED_OK, GlobalErrorMessage.CONTACT_FORM_NOT_SEND
 
-            # if text_box_page.check_field() == 'Thank you for your interest!':
-            #     print('Contact Form Send)')
-            # else:
-            #     print('Contact Form Not Send')
-            #print(text_box_page.check_field())
+        def test_contact_form_small(self, driver):
+            """Тестуємо форму відправлення даних від користувача де замало символів, але коректний url: contact-us"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
+            text_box_page.open()
+            text_box_page.fill_all_fields_short()
+            driver.get_screenshot_as_file("CONTACT_short.png")
+            assert text_box_page.check_field() == PageResponse.FORM_SUBMITTED_OK, GlobalErrorMessage.CONTACT_FORM_NOT_SEND
 
+        def test_contact_form_without_email(self, driver):
+            """Тестуємо форму відправлення даних від користувача не заповнючи email"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
+            text_box_page.open()
+            text_box_page.fill_fields_without_email()
+            driver.get_screenshot_as_file("CONTACT_without_email.png")
+            assert text_box_page.check_field_have_error() == PageResponse.FIELDS_HAVE_ERROR, GlobalErrorMessage.INCORRECT_DATA
+
+
+        def test_contact_form_without_full_name(self, driver):
+            """Тестуємо форму відправлення даних від користувача не заповнючи full name"""
+            text_box_page = TextBoxPage(driver, URL_CONTACT_US)
+            text_box_page.open()
+            text_box_page.fill_fields_without_full_name()
+            driver.get_screenshot_as_file("CONTACT_without_name.png")
+            assert text_box_page.check_field_have_error() == PageResponse.FIELDS_HAVE_ERROR, GlobalErrorMessage.INCORRECT_DATA
